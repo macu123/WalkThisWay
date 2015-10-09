@@ -8,18 +8,24 @@ class TripsController < ApplicationController
 
   def new
 
-    api_url = 'https://maps.googleapis.com/maps/api/directions/json?'
     origin = "639 Queen Street West Toronto"
     destination = "Queen and Spadina Toronto"
-    key = "AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k"
-    mode = "walking"
 
-    url = api_url + 'origin=' + origin + '&destination=' +  destination + '&mode=' + mode + '&key=' + key
+    api_url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + origin + '&destination=' +  destination + '&mode='
+    key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
 
-    url.gsub!(" ", "+")
+    walk_url = api_url.gsub!(' ', '+') + 'walking' + key
+    walk_response = HTTParty.get(walk_url)
+    walk_time = walk_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
 
-    response = HTTParty.get(url)
-  
+    transit_url = api_url + 'transit' + key
+    transit_response = HTTParty.get(transit_url)
+    transit_time = transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+
+    # binding.pry
+
+    response={ walk_time: walk_time, transit_time: transit_time}
+
     render json: response
 
   end
