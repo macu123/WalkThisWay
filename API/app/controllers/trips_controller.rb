@@ -1,16 +1,27 @@
 class TripsController < ApplicationController
 
-  def create
+  def index
 
-    url = 'https://maps.googleapis.com/maps/api/directions/json?'
-    origin = ""
-    destination = ""
+    redirect_to new_trip_path
 
+  end
+
+  def new
+
+    api_url = 'https://maps.googleapis.com/maps/api/directions/json?'
+    origin = "639 Queen Street West Toronto"
+    destination = "Queen and Spadina Toronto"
     key = "AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k"
-
     mode = "walking"
 
-    response = HTTParty.get('#{url}origin=#{origin}&destination=#{destination}&key=#{key}')
+    url = api_url + 'origin=' + origin + '&destination=' +  destination + '&mode=' + mode + '&key=' + key
+
+    url.gsub!(" ", "+")
+
+    response = HTTParty.get(url)
+  
+    render json: response
+
   end
 
 end
