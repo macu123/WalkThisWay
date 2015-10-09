@@ -12,5 +12,35 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolink
 //= require_tree .
+
+// FUCKIN AJAX SHIT HERE
+
+
+var app = angular.module("walkthisway", []);
+
+app.controller("submitController", function($scope, $http){
+
+	$scope.addresses={};
+
+	$scope.addAddress = function(addresses){
+		$scope.addresses.startpoint = $scope.startpoint;
+		$scope.addresses.endpoint = $scope.endpoint;
+
+		$http.post("/trips", {startpoint:$scope.startpoint, endpoint:$scope.endpoint})
+			.then(function(response){
+				console.log(response)
+			});
+
+		console.log($scope.addresses)
+	};
+
+
+	// $http.post("/trip", {"startpoint":$scope.addresses.startpoint, 
+	// 	"endpoint":$scope.addresses.endpoint})
+
+
+})
+
+		// 
