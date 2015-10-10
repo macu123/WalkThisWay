@@ -29,7 +29,7 @@ class TripsController < ApplicationController
 
     # binding.pry
 
-    render json: transit_response
+    render json: response
 
   end
 
