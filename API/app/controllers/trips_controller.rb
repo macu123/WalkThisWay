@@ -16,17 +16,20 @@ class TripsController < ApplicationController
 
     walk_url = api_url.gsub!(' ', '+') + 'walking' + key
     walk_response = HTTParty.get(walk_url)
-    walk_time = walk_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+    walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
 
     transit_url = api_url + 'transit' + key
     transit_response = HTTParty.get(transit_url)
-    transit_time = transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+    transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
+    nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
+    route_tag = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
+
+    response = { walk_time: walk_time, transit_time: transit_time, 
+                nearest_stop: nearest_stop, tag: route_tag}
 
     # binding.pry
 
-    response={ walk_time: walk_time, transit_time: transit_time}
-
-    render json: response
+    render json: transit_response
 
   end
 
