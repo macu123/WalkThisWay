@@ -3,12 +3,14 @@ require_relative '../services/trip_planner'
 
 class TripsPlannerController < ApplicationController
 
-  def index
+  def create
 
     startpoint = params[:startpoint]
     endpoint = params[:endpoint]
 
-    TripPlanner.plan_trip(startpoint, endpoint)
+    response = TripPlanner.plan_trip(startpoint, endpoint)
+
+    render json: response
 
   end
 

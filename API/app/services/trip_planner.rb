@@ -7,7 +7,7 @@ class TripPlanner
 
     api_url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + origin + '&destination=' +  destination + '&mode='
     key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
-
+        # binding.pry
         walk_url = api_url.gsub!(' ', '+') + 'walking' + key
         walk_response = HTTParty.get(walk_url)
         walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
@@ -71,7 +71,7 @@ class TripPlanner
 
     # binding.pry
 
-    render json: response
+    response
 
 
   end
