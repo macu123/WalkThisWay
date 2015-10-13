@@ -42,11 +42,16 @@ class TripsController < ApplicationController
 
         arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
         arrivals = Nokogiri::HTML(open(arrivals_url))
-        arrival = arrivals.xpath("//direction//prediction").to_s.split("</prediction>")[0].split("seconds=")[1].split("minutes")[0].partition(/\d{3}/)[1]
+        arrival = arrivals.xpath("//direction//prediction").to_s.split("</prediction>")[0].split("seconds=")[1].split("minutes")[0].partition(/\d{3}/)[1].to_i
 
-    response = { walk_time: walk_time, transit_time: transit_time, 
-                nearest_stop: nearest_stop, route_tag: route_tag, instructions: instructions,
-                intersection: intersection, arrival: arrival, total_transit: (transit_time + arrival)}
+    response = { 
+                route_tag: route_tag,
+                intersection: intersection, 
+                arrival: arrival,
+                walk_time: walk_time, 
+                transit_time: transit_time,  
+                total_transit_time: (transit_time.to_i + arrival)
+                }
 
     # binding.pry
 
