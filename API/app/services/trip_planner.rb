@@ -84,7 +84,6 @@ class TripPlanner
                 take_bus: take_bus
                 }
 
-    # binding.pry
 
     response
 
