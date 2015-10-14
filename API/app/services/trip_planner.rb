@@ -48,7 +48,6 @@ class TripPlanner
     nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
     step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
     
-      
 
     if step_one == "WALKING"
       instructions = transit_response["routes"][0]["legs"][0]["steps"][0]["html_instructions"]
@@ -74,6 +73,7 @@ class TripPlanner
 
 
     if (route_tag != "1") && (route_tag != "2") && (route_tag != "3") && (route_tag != "4")
+      
       route_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=ttc&r=' + route_tag
       routes = Nokogiri::HTML(open(route_url))
       stops = routes.xpath("//route//stop").to_s.split("</stop>")
@@ -116,29 +116,29 @@ class TripPlanner
       else
         take_transit = false
       end
+
     else
+
       if transit_time < walk_time
         take_transit = true
       else
         take_transit = false
       end
+
     end
 
-
     response = { 
-            route_tag: route_tag,
-            direction: direction,
-            nextbus_direction: nextbus_direction,
-            intersection: intersection, 
-            vehicle_arrival: arrival,
-            walk_to_stop_time: @walk_to_stop_time,
-            walk_to_destination_time: walk_time, 
-            transit_time: transit_time,  
-            total_transit_time: total_transit_time,
-            take_transit: take_transit
-            }
-
+      route_tag: route_tag,
+      direction: direction,
+      nextbus_direction: nextbus_direction,
+      intersection: intersection, 
+      vehicle_arrival: arrival,
+      walk_to_stop_time: @walk_to_stop_time,
+      walk_to_destination_time: walk_time, 
+      transit_time: transit_time,  
+      total_transit_time: total_transit_time,
+      take_transit: take_transit
+      }
   end
-
 
 end
