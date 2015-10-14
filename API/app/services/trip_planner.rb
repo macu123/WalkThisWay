@@ -54,7 +54,7 @@ class TripPlanner
             if direction == "East" || direction == "South"
                 stop = targets[0]
             elsif direction == "West" || direction == "North"
-                stop = targets[1]
+                stop = targets[-1]
             end
 
             stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
