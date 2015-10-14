@@ -44,11 +44,14 @@ class TripPlanner
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
     transit_response = HTTParty.get(transit_url)
 
-    transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
-    nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
-    step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
+    if transit_response["routes"].length > 0
+      transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
+      nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
+      step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
+    else
+      error = true
+    end
     
-
     if step_one == "WALKING"
       instructions = transit_response["routes"][0]["legs"][0]["steps"][0]["html_instructions"]
       if instructions.include? (" at ")
@@ -59,7 +62,7 @@ class TripPlanner
       route_tag = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
       direction = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
       @walk_to_stop_time = transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
-    else
+    elsif transit_response["routes"][0]
       onboard = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
       if onboard.include? "Station"
         intersection = onboard
@@ -118,10 +121,14 @@ class TripPlanner
       end
 
     else
-      if transit_time < walk_time
+
+      if !error && transit_time < walk_time 
         take_transit = true
-      else
+      elsif !error && transit_time > walk_time
         take_transit = false
+      else
+        error = "No route found."
+        walk_time = nil
       end
     end
 
@@ -135,7 +142,8 @@ class TripPlanner
       walk_to_destination_time: walk_time, 
       transit_time: transit_time,  
       total_transit_time: total_transit_time,
-      take_transit: take_transit
+      take_transit: take_transit,
+      errors: error
       }
   end
 
