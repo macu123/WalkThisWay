@@ -21,7 +21,18 @@ class TripsController < ApplicationController
   end
 
   def show
-
+  	@user = User.find(session[:user_id])
+  	if @user
+	  	if params[:token] == @user.token
+	  		@trips = Trip.find_by(session[:user_id])
+	  		response = @trips
+	  	else
+	  		response = {"fuck": "you"}
+	  	end
+	  else
+	  	response = {"fuck": "you"}
+	  end
+	  render json: response
   end
 
   def destroy
