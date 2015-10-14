@@ -72,7 +72,7 @@ class TripPlanner
     end
 
 
-    if (route_tag != "1") && (route_tag != "2") && (route_tag != "3") && (route_tag != "4")
+    if route_tag.to_i > 4
       
       route_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=ttc&r=' + route_tag
       routes = Nokogiri::HTML(open(route_url))
@@ -118,13 +118,11 @@ class TripPlanner
       end
 
     else
-
       if transit_time < walk_time
         take_transit = true
       else
         take_transit = false
       end
-
     end
 
     response = { 
