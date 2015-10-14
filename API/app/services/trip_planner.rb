@@ -1,17 +1,23 @@
 class TripPlanner
 
   def self.api(s,e)
-    origin = s.gsub(' ', '+') + '+Toronto'
+    if s == (/\D{2}/)
+      origin = s.gsub(' ', '+') + '+Toronto'
+    else
+      origin = s.gsub(',',' ').gsub(' ', '+')
+    end
+
     destination = e.gsub(' ', '+') + '+Toronto'
     url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + origin + '&destination=' +  destination + '&mode='
   end
 
-  def self.walk_time
+  def self.get_walk_time
     walk_response = HTTParty.get(@api_url + 'walking' + @key)
     walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
   end
 
   def self.get_arrival(path)
+
     arrivals = path.xpath("//direction//prediction").to_s.split("</prediction>")
 
     arrivals.map! do |a|
@@ -39,6 +45,8 @@ class TripPlanner
     @api_url = api(startpoint,endpoint)
     @key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
     total_transit_time = nil
+
+    @walk_time = get_walk_time
         
 
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
@@ -55,9 +63,9 @@ class TripPlanner
     if step_one == "WALKING"
       instructions = transit_response["routes"][0]["legs"][0]["steps"][0]["html_instructions"]
       if instructions.include? (" at ")
-        intersection = instructions.split("Walk to ")[1].gsub!(" at "," At ")
+        ttc_stop = instructions.split("Walk to ")[1].gsub!(" at "," At ")
       else
-        intersection = instructions.split("Walk to ")[1]
+        ttc_stop = instructions.split("Walk to ")[1]
       end
       route_tag = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
       direction = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
@@ -65,9 +73,9 @@ class TripPlanner
     elsif transit_response["routes"][0]
       onboard = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
       if onboard.include? "Station"
-        intersection = onboard
+        ttc_stop = onboard
       else
-        intersection = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
+        ttc_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
       end
       route_tag = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
       direction = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
@@ -84,7 +92,7 @@ class TripPlanner
       stop = nil
 
       stops.each do |s|
-        if s.include? intersection
+        if s.include? ttc_stop
           targets << s
         end
       end
@@ -114,7 +122,7 @@ class TripPlanner
 
       total_transit_time = transit_time.to_i + arrival
 
-      if ( walk_time > total_transit_time )
+      if ( @walk_time > total_transit_time )
         take_transit = true
       else
         take_transit = false
@@ -122,26 +130,25 @@ class TripPlanner
 
     else
 
-      if !error && transit_time < walk_time 
+      if !error && transit_time < @walk_time 
         take_transit = true
-      elsif !error && transit_time > walk_time
+      elsif !error && transit_time > @walk_time
         take_transit = false
       else
         error = "No route found."
-        walk_time = nil
+        @walk_time = nil
       end
     end
 
     response = { 
       route_tag: route_tag,
       direction: direction,
-      nextbus_direction: nextbus_direction,
-      intersection: intersection, 
+      ttc_stop: ttc_stop, 
       vehicle_arrival: arrival,
-      walk_to_stop_time: @walk_to_stop_time,
-      walk_to_destination_time: walk_time, 
-      transit_time: transit_time,  
-      total_transit_time: total_transit_time,
+      walk_time: @walk_time,
+      walk_to_stop: @walk_to_stop_time,
+      ride_time: transit_time, 
+      transit_time: total_transit_time,
       take_transit: take_transit,
       errors: error
       }
