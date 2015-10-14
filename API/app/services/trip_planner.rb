@@ -32,20 +32,25 @@ class TripPlanner
                 direction = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
                 walk_to_stop_time = transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
             else
+              onboard = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
+              if onboard.include? "Station"
+                intersection = onboard
+              else
                 intersection = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
-                route_tag = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
-                direction = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
-                walk_to_stop_time = 0
+              end
+              route_tag = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
+              direction = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
+              walk_to_stop_time = 0
             end
 
-            if (route_tag != "1") && (route_tag != "2") && (route_tag != "3")
+            if (route_tag != "1") && (route_tag != "2") && (route_tag != "3") && (route_tag != "4")
               route_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=ttc&r=' + route_tag
               routes = Nokogiri::HTML(open(route_url))
               stops = routes.xpath("//route//stop").to_s.split("</stop>")
               targets = []
               stop = nil
 
-              binding.pry
+              # binding.pry 
 
               stops.each do |s|
                 if s.include? intersection
