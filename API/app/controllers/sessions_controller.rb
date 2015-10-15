@@ -9,11 +9,8 @@ class SessionsController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		puts @user
 
-		if @user && @user.authenticate(params[:password])
-			puts "correct"
-
-			session[:user_id] = @user.id
-
+		if @user && @user.authenticate(params[:password])			
+		
 			token = SecureRandom.hex
 			response = {username: @user.first_name, email: @user.email, token: token}
 
@@ -27,8 +24,8 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(session[:user_id])
+		@user = User.find_by(email: params[:email])
 		@user.token = nil
-		session[:user_id] = nil
+		@user.save
 	end
 end
