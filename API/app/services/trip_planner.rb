@@ -2,7 +2,7 @@ class TripPlanner
 
   def self.api(s,e)
     if /\D+/.match(s)
-      origin = s.gsub(' ', '+') + '+Toronto'
+      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+') + '+Toronto'
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
     end
@@ -108,7 +108,7 @@ class TripPlanner
       @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
 
       nextbus_direction = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1].split(" - ")[0]
-      
+
       if nextbus_direction != direction
           stop = targets[0]
           stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
