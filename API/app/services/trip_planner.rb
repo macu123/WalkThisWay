@@ -1,7 +1,7 @@
 class TripPlanner
 
   def self.api(s,e)
-    if s == (/\D{2}/)
+    if /\D+/.match(s)
       origin = s.gsub(' ', '+') + '+Toronto'
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
@@ -45,7 +45,6 @@ class TripPlanner
     @api_url = api(startpoint,endpoint)
     @key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
     total_transit_time = nil
-
     @walk_time = get_walk_time
         
 
