@@ -9,7 +9,15 @@ class TripsController < ApplicationController
   end
 
   def create
-  	@trip = Trip.new(trip_params)
+  	@user = User.find_by(email:params[:email])
+  	# binding.pry
+  	@trip = Trip.new(start_latitude: params[:start_lat], start_longitude: params[:start_long], 
+  		end_latitude: params[:end_lat], end_longitude: params[:end_long], trip_name: params[:trip_name], user_id:@user.id)
+  	if @trip.save
+  		render json: response = {"it": "worked"}
+  	else
+  		render json: response = {"it": "fucked up"}
+  	end
   end
 
   def edit
@@ -21,7 +29,7 @@ class TripsController < ApplicationController
   end
 
   def show
-  	@user = User.find(session[:user_id])
+  	@user = User.find_by(email:params[:email])
   	if @user
 	  	if params[:token] == @user.token
 	  		@trips = Trip.find_by(session[:user_id])
@@ -42,7 +50,7 @@ class TripsController < ApplicationController
   protected
 
   def trip_params
-  	params.require(:trip).permit(:user_id, :start_latitude, :start_longitude, :end_latitude, :end_longitude, :startpoint, :endpoint)
+  	params.require(:trip).permit(:user_id, :start_latitude, :start_longitude, :end_latitude, :end_longitude, :trip_name)
   end
 end
 
