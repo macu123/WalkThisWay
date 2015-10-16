@@ -50,11 +50,16 @@ class TripPlanner
 
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
     transit_response = HTTParty.get(transit_url)
-
+    # binding.pry
     if transit_response["routes"].length > 0
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
       nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
+      start_lat = transit_response["routes"][0]["bounds"]["northeast"]["lat"]
+      start_long = transit_response["routes"][0]["bounds"]["northeast"]["lng"]
+      end_lat = transit_response["routes"][0]["bounds"]["southwest"]["lat"]
+      end_long = transit_response["routes"][0]["bounds"]["southwest"]["lng"]
+
     else
       error = true
     end
@@ -149,6 +154,10 @@ class TripPlanner
       ride_time: transit_time, 
       transit_time: total_transit_time,
       take_transit: take_transit,
+      start_lat: start_lat,
+      start_long: start_long,
+      end_lat: end_lat,
+      end_long: end_long,
       errors: error
       }
   end
