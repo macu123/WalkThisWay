@@ -17,15 +17,17 @@ class SessionsController < ApplicationController
 			@user.token = token
 			@user.save
 		else 
-			response = {"fuck": "you"}
+			response = {"fuck" => "you"}
 		end
 
 		render json: response
 	end
 
-	def destroy
+	def remove
 		@user = User.find_by(email: params[:email])
 		@user.token = nil
 		@user.save
+		response = {"fuck" => "you" }
+		render json: response
 	end
 end

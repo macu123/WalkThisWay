@@ -30,10 +30,12 @@ class TripsController < ApplicationController
 
   def show
   	@user = User.find_by(email:params[:email])
+  	response = {}
   	if @user
 	  	if params[:token] == @user.token
-	  		@trips = Trip.find_by(session[:user_id])
-	  		response = @trips
+	  		# @trips = Trip.find_by(session[:user_id])
+	  		# response << @trips
+	  		response.email = @user.email
 	  	else
 	  		response = {"fuck": "you"}
 	  	end
