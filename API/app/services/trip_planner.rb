@@ -1,12 +1,11 @@
 class TripPlanner
 
   def self.api(s,e)
-    if /\D+/.match(s)
+    if /[a-zA-z]/.match(s)
       origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+') + '+Toronto'
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
     end
-
     destination = e.gsub(' ', '+') + '+Toronto'
     url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + origin + '&destination=' +  destination + '&mode='
   end
@@ -44,7 +43,6 @@ class TripPlanner
 
     error = false
 
-
     @api_url = api(startpoint,endpoint)
     @key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
     total_transit_time = nil
@@ -57,10 +55,10 @@ class TripPlanner
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
       nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
-      start_lat = transit_response["routes"][0]["bounds"]["northeast"]["lat"]
-      start_long = transit_response["routes"][0]["bounds"]["northeast"]["lng"]
-      end_lat = transit_response["routes"][0]["bounds"]["southwest"]["lat"]
-      end_long = transit_response["routes"][0]["bounds"]["southwest"]["lng"]
+      end_lat = transit_response["routes"][0]["bounds"]["northeast"]["lat"]
+      end_long = transit_response["routes"][0]["bounds"]["northeast"]["lng"]
+      start_lat = transit_response["routes"][0]["bounds"]["southwest"]["lat"]
+      start_long = transit_response["routes"][0]["bounds"]["southwest"]["lng"]
     else
       error = true
     end
