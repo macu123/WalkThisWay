@@ -14,9 +14,9 @@ class TripsController < ApplicationController
   	@trip = Trip.new(start_latitude: params[:start_lat], start_longitude: params[:start_long], 
   		end_latitude: params[:end_lat], end_longitude: params[:end_long], trip_name: params[:trip_name], user_id:@user.id)
   	if @trip.save
-  		render json: response = {"it": "worked"}
+  		render json: response = {"it" => "worked"}
   	else
-  		render json: response = {"it": "fucked up"}
+  		render json: response = {"it" => "fucked up"}
   	end
   end
 
@@ -29,19 +29,18 @@ class TripsController < ApplicationController
   end
 
   def show
-  	@user = User.find_by(email:params[:email])
+   	@user = User.find_by(email:params[:email])
   	response = {}
-  	if @user
-	  	if params[:token] == @user.token
-	  		# @trips = Trip.find_by(session[:user_id])
-	  		# response << @trips
-	  		response.email = @user.email
-	  	else
-	  		response = {"fuck": "you"}
-	  	end
-	  else
-	  	response = {"fuck": "you"}
-	  end
+  	@trips = Trip.where(user_id:@user.id) 
+  	@trips = @trips.as_json
+
+  	if @trips != nil 		
+  		response[:email] = @user.email
+  		response[:trips] = @trips
+  	else
+  		response[:has_trips] = false
+  	end
+
 	  render json: response
   end
 

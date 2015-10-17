@@ -5,6 +5,7 @@ class TripsPlannerController < ApplicationController
 
   def create
 
+
     startpoint = params[:startpoint]
     endpoint = params[:endpoint]
 
