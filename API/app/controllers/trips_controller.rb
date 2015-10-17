@@ -46,8 +46,7 @@ class TripsController < ApplicationController
   end
 
   def destroy
-  	@trip = Trip.find(trip)
-  	@trip.destroy
+  	Trip.find(params[:id]).destroy
   	response = {trip: "destroyed"}
   	render json: response
   end
