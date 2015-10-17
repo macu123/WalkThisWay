@@ -31,6 +31,7 @@ class TripsController < ApplicationController
   def show
    	@user = User.find_by(email:params[:email])
   	response = {}
+
   	@trips = Trip.where(user_id:@user.id) 
   	@trips = @trips.as_json
 
@@ -39,7 +40,8 @@ class TripsController < ApplicationController
   		response[:trips] = @trips
   	else
   		response[:has_trips] = false
-  	end
+   	end
+
 
 	  render json: response
   end
