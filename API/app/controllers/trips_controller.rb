@@ -47,7 +47,10 @@ class TripsController < ApplicationController
   end
 
   def destroy
-
+  	@trip = Trip.find(trip)
+  	@trip.destroy
+  	response = {trip: "destroyed"}
+  	render json: response
   end
 
   protected
