@@ -44,20 +44,21 @@ class TripPlanner
     error = false
 
     @api_url = api(startpoint,endpoint)
-    @key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
+    @key = '&key=' + 'AIzaSyBfPfgP2xVhcjJ7btew8v7r1hBg-rjlEjE'
     total_transit_time = nil
     @walk_time = get_walk_time
           
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
     transit_response = HTTParty.get(transit_url)
+    binding.pry
     if transit_response["routes"].length > 0
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
       nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
-      end_lat = transit_response["routes"][0]["bounds"]["northeast"]["lat"]
-      end_long = transit_response["routes"][0]["bounds"]["northeast"]["lng"]
-      start_lat = transit_response["routes"][0]["bounds"]["southwest"]["lat"]
-      start_long = transit_response["routes"][0]["bounds"]["southwest"]["lng"]
+      end_lat = transit_response["routes"][0]["legs"][0]["end_location"]["lat"]
+      end_long = transit_response["routes"][0]["legs"][0]["end_location"]["lng"]
+      start_lat = transit_response["routes"][0]["legs"][0]["start_location"]["lat"]
+      start_long = transit_response["routes"][0]["legs"][0]["start_location"]["lng"]
     else
       error = true
     end
