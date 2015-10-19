@@ -48,12 +48,14 @@ class TripPlanner
     error = false
 
     @api_url = api(startpoint,endpoint)
-    @key = '&key=' + 'AIzaSyDV1UKhjgAlg3XRsY_Xr-7W3fds6_RyPy4'
+
+    @key = '&key=' + 'AIzaSyBfPfgP2xVhcjJ7btew8v7r1hBg-rjlEjE'
     total_transit_time = nil
     @walk_time = get_walk_time
           
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
     transit_response = HTTParty.get(transit_url)
+    binding.pry
     if transit_response["routes"].length > 0
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
