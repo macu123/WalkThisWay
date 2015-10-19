@@ -1,13 +1,17 @@
 class TripPlanner
 
-  def self.api(s,e)
+  def self.format_input(s)
     if /[a-zA-z]/.match(s)
       origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+') + '+Toronto'
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
     end
-    destination = e.gsub(' ', '+') + '+Toronto'
-    url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + origin + '&destination=' +  destination + '&mode='
+  end
+
+  def self.api(s,e)
+    @origin = format_input(s)
+    @destination = format_input(e)
+    url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + @origin + '&destination=' +  @destination + '&mode='
   end
 
   def self.get_walk_time
@@ -44,7 +48,7 @@ class TripPlanner
     error = false
 
     @api_url = api(startpoint,endpoint)
-    @key = '&key=' + 'AIzaSyCR5fUOPVxtqsSR5Oy3jIQ4P-f0tLMYj9k'
+    @key = '&key=' + 'AIzaSyDV1UKhjgAlg3XRsY_Xr-7W3fds6_RyPy4'
     total_transit_time = nil
     @walk_time = get_walk_time
           
@@ -52,12 +56,11 @@ class TripPlanner
     transit_response = HTTParty.get(transit_url)
     if transit_response["routes"].length > 0
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
-      nearest_stop = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
-      end_lat = transit_response["routes"][0]["bounds"]["northeast"]["lat"]
-      end_long = transit_response["routes"][0]["bounds"]["northeast"]["lng"]
-      start_lat = transit_response["routes"][0]["bounds"]["southwest"]["lat"]
-      start_long = transit_response["routes"][0]["bounds"]["southwest"]["lng"]
+      start_lat = transit_response["routes"][0]["legs"][0]["start_location"]["lat"]
+      start_lng = transit_response["routes"][0]["legs"][0]["start_location"]["lng"]
+      end_lat = transit_response["routes"][0]["legs"][0]["end_location"]["lat"]
+      end_lng = transit_response["routes"][0]["legs"][0]["end_location"]["lng"]
     else
       error = true
     end
@@ -72,6 +75,9 @@ class TripPlanner
       route_tag = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
       direction = transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
       @walk_to_stop_time = transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+      lat = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lat"].to_s
+      lng = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lng"].to_s
+      display_end = HTTParty.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + @key)["results"][0]["formatted_address"]
     elsif transit_response["routes"][0]
       onboard = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
       if onboard.include? "Station"
@@ -82,8 +88,8 @@ class TripPlanner
       route_tag = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
       direction = transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
       @walk_to_stop_time = 0
+      display_end = HTTParty.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + start_lat.to_s + ',' + start_lng.to_s + @key)["results"][0]["formatted_address"]
     end
-
 
     if route_tag.to_i > 4
       
@@ -128,19 +134,21 @@ class TripPlanner
         take_transit = true
       else
         take_transit = false
+        display_end = @destination
       end
 
     else
-
       if !error && transit_time < @walk_time 
         take_transit = true
+        lat = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lat"].to_s
+        lng = transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lng"].to_s
       elsif !error && transit_time > @walk_time
         take_transit = false
+        display_end = @destination
       else
         error = true
       end
     end
-
 
     response = { 
       route_tag: route_tag,
@@ -153,9 +161,13 @@ class TripPlanner
       transit_time: total_transit_time,
       take_transit: take_transit,
       start_lat: start_lat,
-      start_long: start_long,
+      start_lng: start_lng,
       end_lat: end_lat,
-      end_long: end_long,
+      end_lng: end_lng,
+      startpoint: startpoint,
+      endpoint: endpoint,
+      display_start: @origin,
+      display_end: display_end,
       errors: error
       }
   end
