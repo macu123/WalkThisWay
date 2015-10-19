@@ -55,7 +55,7 @@ class TripPlanner
           
     transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
     transit_response = HTTParty.get(transit_url)
-    binding.pry
+
     if transit_response["routes"].length > 0
       transit_time = transit_response["routes"][0]["legs"][0]["duration"]["value"]
       step_one = transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
