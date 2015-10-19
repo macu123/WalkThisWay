@@ -10,8 +10,10 @@ class TripsController < ApplicationController
 
   def create
   	@user = User.find_by(email:params[:email])
-  	@trip = Trip.new(start_latitude: params[:start_lat], start_longitude: params[:start_lng], 
-  		end_latitude: params[:end_lat], end_longitude: params[:end_lng], trip_name: params[:trip_name], user_id:@user.id)
+
+  	@trip = Trip.new(start_latitude: params[:start_lat], start_longitude: params[:start_long], 
+  		end_latitude: params[:end_lat], end_longitude: params[:end_long], trip_name: params[:trip_name], user_id:@user.id)
+
   	if @trip.save
   		render json: response = {saved: true}
   	else
