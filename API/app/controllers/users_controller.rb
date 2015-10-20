@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	
 	def index
+		puts "-----"
+		puts params[:token]
 		if params[:token]
 			token = params[:token]
 			@user = User.find_by(token: token)
