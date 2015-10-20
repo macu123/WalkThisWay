@@ -25,6 +25,7 @@ class TripPlanner
       a = a.split("seconds=")[1].split("minutes")[0].partition(/\d{3}/)[1].to_i
     end
     arrival = arrivals[0]
+
     arrivals.each do |t|
       if t
         if t - @walk_to_stop_time > 59
@@ -44,16 +45,16 @@ class TripPlanner
       "Please enter a valid endpoint."
     elsif ( @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" )
       "We couldn't find a route for you, please check your inputs."
-    elsif (@status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED")
+    elsif ( @status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED" )
       "Something went wrong with our server. We're working to fix it!"
     elsif @status == "UNKNOWN_ERROR"
       "Something weird happened with the Google Maps request. Please try again!"
-    elsif @transit_response["geocoded_waypoints"][0]["types"][0] == "locality"
-      "Please enter a more specific startpoint."
-    elsif @transit_response["geocoded_waypoints"][1]["types"][0] == "locality"
-      "Please enter a more specific endpoint."
-    elsif @route_tag.to_i < 4
-      "It looks like your trip is probably too far to walk!"
+    # elsif @start_waypoint == "locality"
+    #   "Please enter a more specific startpoint."
+    # elsif @end_waypoint == "locality"
+    #   "Please enter a more specific endpoint."
+    # elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
+    #   "It looks like your trip is probably too far to walk! Better take the subway."
     end
   end
 
@@ -71,6 +72,8 @@ class TripPlanner
       transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
       @transit_response = HTTParty.get(transit_url)
       @status = @transit_response["@status"]
+      @start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
+      @end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
     end
 
     if !error #Checking for Google Maps error response
