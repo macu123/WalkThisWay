@@ -6,25 +6,25 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		puts params[:email]
-		@user = User.find_by(email: params[:email])
-		puts @user.first_name
-		puts @user.authenticate(params[:password])
-		puts "-----------------------------"
 
-		if @user.authenticate(params[:password])			
-		
-			token = SecureRandom.hex
+		if @user = User.find_by(email: params[:email])
 
-			@user.token = token
-			@user.save
+			if @user.authenticate(params[:password])			
+			
+				token = SecureRandom.hex
 
-			response = {username: @user.first_name, email: @user.email, token: token, login: true}
-		else 
-			response = {login: false}
+				@user.token = token
+				@user.save
+
+				response = {username: @user.first_name, email: @user.email, token: token, login: true}
+			else 
+				response = {login: false}
+			end
+			render json: response
+		else
+			response = {login:false}
+			render json:response
 		end
-
-		render json: response
 	end
 
 	def remove
