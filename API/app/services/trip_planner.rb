@@ -49,10 +49,10 @@ class TripPlanner
       "Something went wrong with our server. We're working to fix it!"
     elsif @status == "UNKNOWN_ERROR"
       "Something weird happened with the Google Maps request. Please try again!"
-    # elsif @start_waypoint == "locality"
-    #   "Please enter a more specific startpoint."
-    # elsif @end_waypoint == "locality"
-    #   "Please enter a more specific endpoint."
+    elsif @start_waypoint == "locality"
+      "Please enter a more specific startpoint."
+    elsif @end_waypoint == "locality"
+      "Please enter a more specific endpoint."
     # elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
     #   "It looks like your trip is probably too far to walk! Better take the subway."
     end
@@ -61,6 +61,8 @@ class TripPlanner
   def self.plan_trip(startpoint,endpoint)
     @startpoint = startpoint
     @endpoint = endpoint
+    @start_waypoint = nil
+    @end_waypoint = nil
 
     if !error #Double checking the start and endpoints
       @api_url = api(@startpoint,@endpoint)
@@ -179,6 +181,11 @@ class TripPlanner
       display_end: display_end,
       errors: error
       }
+      puts 1
+      puts response
+      puts 1
+      response 
+      
   end
 
 end
