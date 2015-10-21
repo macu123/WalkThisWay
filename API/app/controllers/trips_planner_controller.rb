@@ -9,7 +9,7 @@ class TripsPlannerController < ApplicationController
     endpoint = params[:endpoint]
 
     response = TripPlanner.plan_trip(startpoint, endpoint)
-
+    puts "controller"
     render json: response
 
   end
