@@ -2,7 +2,8 @@ class TripPlanner
 
   def self.format_input(s)
     if /[a-zA-Z]/.match(s)
-      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+') + '+Toronto'
+      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+').gsub('Toronto','') + '+Toronto'
+      origin = origin.gsub('++','+')
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
     end
@@ -176,21 +177,21 @@ class TripPlanner
 
     if error
       response = {
-        route_tag: 0,
-        direction: 0,
-        ttc_stop: 0, 
+        route_tag: "-",
+        direction: "-",
+        ttc_stop: "-", 
         vehicle_arrival: 0,
         walk_time: 0,
-        walk_to_stop: 0,
+        walk_to_stop: "-",
         ride_time: 0, 
         transit_time: 0,
         take_transit: false,
-        start_lat: 0,
-        start_lng: 0,
-        end_lat: 0,
-        end_lng: 0,
-        startpoint: 0,
-        endpoint: 0,
+        start_lat: "-",
+        start_lng: "-",
+        end_lat: "-",
+        end_lng: "-",
+        startpoint: "-",
+        endpoint: "-",
         display_start: @origin,
         display_end: @destination,
         errors: error
