@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 			token = params[:token]
 			@user = User.find_by(token: token)
 			if @user
-				response = {username: @user.first_name + " " + @user.last_name, email: @user.email}
+				response = {username: @user.first_name.capitalize + " " + @user.last_name.capitalize, email: @user.email}
 				render json: response
 			else
 				response = {username:nil, email:nil}
