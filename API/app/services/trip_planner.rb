@@ -1,8 +1,9 @@
 class TripPlanner
 
   def self.format_input(s)
-    if /[a-zA-z]/.match(s)
-      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+') + '+Toronto'
+    if /[a-zA-Z]/.match(s)
+      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+').gsub('Toronto','') + '+Toronto'
+      origin = origin.gsub('++','+')
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
     end
@@ -15,7 +16,8 @@ class TripPlanner
   end
 
   def self.get_walk_time
-    walk_response = HTTParty.get(@api_url + 'walking' + @key)
+    encoded = URI.encode(@api_url + 'walking' + @key)
+    walk_response = HTTParty.get(encoded)
     walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
   end
 
@@ -24,14 +26,19 @@ class TripPlanner
     arrivals.map! do |a|
       a = a.split("seconds=")[1].split("minutes")[0].partition(/\d{3}/)[1].to_i
     end
-    arrival = arrivals[0]
+
+    arrival = nil
 
     arrivals.each do |t|
-      if t
+      if arrival
         if t - @walk_to_stop_time > 59
           if t < arrival
             arrival = t
           end
+        end
+      else
+        if t - @walk_to_stop_time > 59
+          arrival = t
         end
       end
     end
@@ -43,7 +50,7 @@ class TripPlanner
       "Please enter a valid startpoint."
     elsif !@endpoint
       "Please enter a valid endpoint."
-    elsif ( @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" )
+    elsif  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
       "We couldn't find a route for you, please check your inputs."
     elsif ( @status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED" )
       "Something went wrong with our server. We're working to fix it!"
@@ -53,8 +60,12 @@ class TripPlanner
       "Please enter a more specific startpoint."
     elsif @end_waypoint == "locality"
       "Please enter a more specific endpoint."
-    # elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
-    #   "It looks like your trip is probably too far to walk! Better take the subway."
+    elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
+      "Just take the fucking subway."
+    elsif /[A-Z]/.match(@route_tag)
+      "Your trip is beyond the realm of the TTC. Godspeed."
+    else
+      false
     end
   end
 
@@ -64,6 +75,9 @@ class TripPlanner
     @start_waypoint = nil
     @end_waypoint = nil
 
+    @route_tag = nil
+
+
     if !error #Double checking the start and endpoints
       @api_url = api(@startpoint,@endpoint)
 
@@ -72,7 +86,8 @@ class TripPlanner
       @walk_time = get_walk_time
             
       transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
-      @transit_response = HTTParty.get(transit_url)
+      encoded = URI.encode(transit_url)
+      @transit_response = HTTParty.get(encoded)
       @status = @transit_response["@status"]
       @start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
       @end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
@@ -121,7 +136,6 @@ class TripPlanner
       stops = routes.xpath("//route//stop").to_s.split("</stop>")
       targets = []
       stop = nil
-
       stops.each do |s|
         if s.include? ttc_stop
           targets << s
@@ -161,31 +175,50 @@ class TripPlanner
       end
     end
 
-    response = { 
-      route_tag: @route_tag,
-      direction: direction,
-      ttc_stop: ttc_stop, 
-      vehicle_arrival: arrival,
-      walk_time: @walk_time,
-      walk_to_stop: @walk_to_stop_time,
-      ride_time: transit_time, 
-      transit_time: total_transit_time,
-      take_transit: take_transit,
-      start_lat: start_lat,
-      start_lng: start_lng,
-      end_lat: end_lat,
-      end_lng: end_lng,
-      startpoint: @startpoint,
-      endpoint: @endpoint,
-      display_start: @origin,
-      display_end: display_end,
-      errors: error
-      }
-      puts 1
-      puts response
-      puts 1
-      response 
-      
-  end
+    puts "service:"
 
+    if error
+      response = {
+        route_tag: "-",
+        direction: "-",
+        ttc_stop: "-", 
+        vehicle_arrival: 0,
+        walk_time: 0,
+        walk_to_stop: "-",
+        ride_time: 0, 
+        transit_time: 0,
+        take_transit: false,
+        start_lat: "-",
+        start_lng: "-",
+        end_lat: "-",
+        end_lng: "-",
+        startpoint: "-",
+        endpoint: "-",
+        display_start: @origin,
+        display_end: @destination,
+        errors: error
+      }
+    else
+      response = { 
+        route_tag: @route_tag,
+        direction: direction,
+        ttc_stop: ttc_stop, 
+        vehicle_arrival: arrival,
+        walk_time: @walk_time,
+        walk_to_stop: @walk_to_stop_time,
+        ride_time: transit_time, 
+        transit_time: total_transit_time,
+        take_transit: take_transit,
+        start_lat: start_lat,
+        start_lng: start_lng,
+        end_lat: end_lat,
+        end_lng: end_lng,
+        startpoint: @startpoint,
+        endpoint: @endpoint,
+        display_start: @origin,
+        display_end: @destination,
+        errors: error
+      }
+    end
+  end
 end
