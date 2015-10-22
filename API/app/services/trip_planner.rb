@@ -62,7 +62,7 @@ class TripPlanner
     elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
       "Just take the fucking subway."
     elsif /[A-Z]/.match(@route_tag)
-      "Your trip is beyond the realm of the TTC. Godspeed."
+      "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
     else
       false
     end
