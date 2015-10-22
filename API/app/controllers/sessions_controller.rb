@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		@user.token = nil
 		@user.save
-		response = {"fuck" => "you" }
+		response = {user: "deleted" }
 		render json: response
 	end
 end
