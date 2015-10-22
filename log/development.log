@@ -39692,3 +39692,29 @@ Processing by TripsPlannerController#create as HTML
   Parameters: {"startpoint"=>"RBC Royal Bank, 570, Queen Street West, Fashion District, Toronto, Ontario, M6J 2E8, Canada", "endpoint"=>"234567890-=", "trips_planner"=>{"startpoint"=>"RBC Royal Bank, 570, Queen Street West, Fashion District, Toronto, Ontario, M6J 2E8, Canada", "endpoint"=>"234567890-="}}
 Can't verify CSRF token authenticity
 Completed 200 OK in 401ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/?token=f011f2c3f57bf274e81f2540925ee484" for 10.0.2.2 at 2015-10-22 17:56:53 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Parameters: {"token"=>"f011f2c3f57bf274e81f2540925ee484"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "f011f2c3f57bf274e81f2540925ee484"]]
+Completed 200 OK in 123ms (Views: 0.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/trips/show?email=samkessaram@gmail.com" for 10.0.2.2 at 2015-10-22 17:56:54 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsController#show as HTML
+  Parameters: {"email"=>"samkessaram@gmail.com", "id"=>"show"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "samkessaram@gmail.com"]]
+  [1m[35mTrip Load (0.2ms)[0m  SELECT "trips".* FROM "trips" WHERE "trips"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 53ms (Views: 1.0ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-22 17:56:56 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702", "trips_planner"=>{"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1095ms (Views: 0.5ms | ActiveRecord: 0.0ms)
