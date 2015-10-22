@@ -15,10 +15,9 @@ class TripPlanner
     url = 'https://maps.googleapis.com/maps/api/directions/json?' + 'origin=' + @origin + '&destination=' +  @destination + '&mode='
   end
 
-  def self.get_walk_time
+  def self.get_walk_response
     encoded = URI.encode(@api_url + 'walking' + @key)
     walk_response = HTTParty.get(encoded)
-    walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
   end
 
   def self.get_arrival(path)
@@ -83,17 +82,18 @@ class TripPlanner
 
       @key = '&key=' + 'AIzaSyBfPfgP2xVhcjJ7btew8v7r1hBg-rjlEjE'
       total_transit_time = nil
-      @walk_time = get_walk_time
+      walk_response = get_walk_response
             
       transit_url = @api_url + 'transit' + '&transit_routing_preference=less_walking' + @key
       encoded = URI.encode(transit_url)
       @transit_response = HTTParty.get(encoded)
-      @status = @transit_response["@status"]
-      @start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
-      @end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
+      @status = @transit_response["status"]
     end
 
     if !error #Checking for Google Maps error response
+      walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
+      @start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
+      @end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
       if @transit_response["routes"].length > 0
         transit_time = @transit_response["routes"][0]["legs"][0]["duration"]["value"]
         step_one = @transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
