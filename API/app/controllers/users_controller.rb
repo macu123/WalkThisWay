@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
 	
 	def index
-		puts "-----"
-		puts params[:token]
 		if params[:token]
 			token = params[:token]
 			@user = User.find_by(token: token)
@@ -13,10 +11,6 @@ class UsersController < ApplicationController
 				response = {username:nil, email:nil}
 				render json: response
 			end
-		# else
-		# 	@user = User.all
-		# 	response = {name:nil, email:nil}
-		# 	render json: response
 		end
   end
 
@@ -26,7 +20,6 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(first_name:params[:first_name], last_name:params[:last_name], email:params[:email], password:params[:password], password_confirmation:params[:password_confirmation])
-  	puts params
   	if @user.save
   		token = SecureRandom.hex
 			response = {username: @user.first_name + " " + @user.last_name, email: @user.email, token: token}
