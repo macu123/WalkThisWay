@@ -167,15 +167,13 @@ class TripPlanner
 
       total_transit_time = transit_time.to_i + arrival
 
-      if ( @walk_time > total_transit_time )
+      if ( walk_time > total_transit_time )
         take_transit = true
       else
         take_transit = false
         display_end = @destination
       end
     end
-
-    puts "service:"
 
     if error
       response = {
@@ -204,7 +202,7 @@ class TripPlanner
         direction: direction,
         ttc_stop: ttc_stop, 
         vehicle_arrival: arrival,
-        walk_time: @walk_time,
+        walk_time: walk_time,
         walk_to_stop: @walk_to_stop_time,
         ride_time: transit_time, 
         transit_time: total_transit_time,
