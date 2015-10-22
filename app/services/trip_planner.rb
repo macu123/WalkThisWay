@@ -44,30 +44,6 @@ class TripPlanner
     arrival
   end
 
-  # def self.error
-  #   if !@startpoint
-  #     "Please enter a valid startpoint."
-  #   elsif !@endpoint
-  #     "Please enter a valid endpoint."
-  #   elsif  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
-  #     "We couldn't find a route for you, please check your inputs."
-  #   elsif ( @status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED" )
-  #     "Something went wrong with our server. We're working to fix it!"
-  #   elsif @status == "UNKNOWN_ERROR"
-  #     "Something weird happened with the Google Maps request. Please try again!"
-  #   elsif @start_waypoint == "locality"
-  #     "Please enter a more specific startpoint."
-  #   elsif @end_waypoint == "locality"
-  #     "Please enter a more specific endpoint."
-  #   elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
-  #     "Just take the fucking subway."
-  #   elsif /[A-Z]/.match(@route_tag)
-  #     "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
-  #   else
-  #     false
-  #   end
-  # end
-
   def self.google_error
     if  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
       @error = "We couldn't find a route for you, please check your inputs."
