@@ -2,7 +2,7 @@ class TripPlanner
 
   def self.format_input(s)
     if /[a-zA-Z]/.match(s)
-      origin = s.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+').gsub('Toronto','') + '+Toronto'
+      origin = s.downcase.gsub(/\D\d\D \d\D\d/,"").gsub(',','').gsub(' ', '+').gsub('toronto','') + '+Toronto'
       origin = origin.gsub('++','+')
     else
       origin = s.gsub(',',' ').gsub(' ', '+')
@@ -44,40 +44,86 @@ class TripPlanner
     arrival
   end
 
-  def self.error
-    if !@startpoint
-      "Please enter a valid startpoint."
-    elsif !@endpoint
-      "Please enter a valid endpoint."
-    elsif  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
-      "We couldn't find a route for you, please check your inputs."
+  # def self.error
+  #   if !@startpoint
+  #     "Please enter a valid startpoint."
+  #   elsif !@endpoint
+  #     "Please enter a valid endpoint."
+  #   elsif  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
+  #     "We couldn't find a route for you, please check your inputs."
+  #   elsif ( @status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED" )
+  #     "Something went wrong with our server. We're working to fix it!"
+  #   elsif @status == "UNKNOWN_ERROR"
+  #     "Something weird happened with the Google Maps request. Please try again!"
+  #   elsif @start_waypoint == "locality"
+  #     "Please enter a more specific startpoint."
+  #   elsif @end_waypoint == "locality"
+  #     "Please enter a more specific endpoint."
+  #   elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
+  #     "Just take the fucking subway."
+  #   elsif /[A-Z]/.match(@route_tag)
+  #     "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
+  #   else
+  #     false
+  #   end
+  # end
+
+  def self.google_error
+    if  @status == "NOT_FOUND" || @status == "ZERO_RESULTS" || @status == "INVALID_REQUEST" 
+      @error = "We couldn't find a route for you, please check your inputs."
     elsif ( @status == "OVER_QUERY_LIMIT" || @status == "REQUEST_DENIED" )
-      "Something went wrong with our server. We're working to fix it!"
+      @error = "Something went wrong with our server. We're working to fix it!"
     elsif @status == "UNKNOWN_ERROR"
-      "Something weird happened with the Google Maps request. Please try again!"
+      @error = "Something weird happened with the Google Maps request. Please try again!"
     elsif @start_waypoint == "locality"
-      "Please enter a more specific startpoint."
+      @error = "Please enter a more specific startpoint."
     elsif @end_waypoint == "locality"
-      "Please enter a more specific endpoint."
-    elsif @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
-      "Just take the fucking subway."
-    elsif /[A-Z]/.match(@route_tag)
-      "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
+      @error = "Please enter a more specific endpoint."
+    else 
+      @error = false
+    end
+  end
+
+  def self.endpoints_error
+    if !@startpoint
+      @error = "Please enter a valid startpoint."
+    elsif !@endpoint
+      @error = "Please enter a valid endpoint."
     else
-      false
+      @error = false
+    end
+  end
+
+  def self.waypoints_error
+    start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
+    end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
+    if start_waypoint == "locality"
+      @error = "Please enter a more specific startpoint."
+    elsif end_waypoint == "locality"
+      @error = "Please enter a more specific endpoint."
+    else
+      @error = false
+    end
+  end
+
+  def self.route_tag_error
+    if @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
+      @error = "Just take the fucking subway."
+    elsif /[A-Z]/.match(@route_tag)
+      @error = "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
+    else
+      @error = false
     end
   end
 
   def self.plan_trip(startpoint,endpoint)
     @startpoint = startpoint
     @endpoint = endpoint
-    @start_waypoint = nil
-    @end_waypoint = nil
-
+    @status = nil
     @route_tag = nil
+    @error = nil
 
-
-    if !error #Double checking the start and endpoints
+    if !@error && !endpoints_error #Double checking the start and endpoints
       @api_url = api(@startpoint,@endpoint)
 
       @key = '&key=' + 'AIzaSyBfPfgP2xVhcjJ7btew8v7r1hBg-rjlEjE'
@@ -90,10 +136,8 @@ class TripPlanner
       @status = @transit_response["status"]
     end
 
-    if !error #Checking for Google Maps error response
+    if !@error && !google_error && !waypoints_error #Checking for Google Maps error response
       walk_time = walk_response["routes"][0]["legs"][0]["duration"]["value"]
-      @start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
-      @end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
       if @transit_response["routes"].length > 0
         transit_time = @transit_response["routes"][0]["legs"][0]["duration"]["value"]
         step_one = @transit_response["routes"][0]["legs"][0]["steps"][0]["travel_mode"]
@@ -130,7 +174,7 @@ class TripPlanner
       end
     end
     
-    if !error #Checking if route is bus or streetcar
+    if !@error && !route_tag_error #Checking if route is bus or streetcar
       route_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=ttc&r=' + @route_tag
       routes = Nokogiri::HTML(open(route_url))
       stops = routes.xpath("//route//stop").to_s.split("</stop>")
@@ -175,7 +219,7 @@ class TripPlanner
       end
     end
 
-    if error
+    if @error
       response = {
         route_tag: "-",
         direction: "-",
@@ -194,7 +238,7 @@ class TripPlanner
         endpoint: "-",
         display_start: @origin,
         display_end: @destination,
-        errors: error
+        errors: @error
       }
     else
       response = { 
@@ -215,7 +259,7 @@ class TripPlanner
         endpoint: @endpoint,
         display_start: @origin,
         display_end: @destination,
-        errors: error
+        errors: @error
       }
     end
   end
