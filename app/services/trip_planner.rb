@@ -175,7 +175,7 @@ class TripPlanner
 
       nextbus_direction = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1].split(" - ")[0]
 
-      if nextbus_direction != direction
+      if ( nextbus_direction != direction ) && ( !@arrivals_doc.xpath("//predictions").to_s.split("stoptitle=\"")[1].split("\"")[0].include? ("Station") )
           stop = targets[0]
           stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
           arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
