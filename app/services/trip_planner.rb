@@ -88,7 +88,7 @@ class TripPlanner
     elsif /[A-Z]/.match(@route_tag)
       @error = "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
     elsif @short_trip
-      @error = "There's lazy, and then there's LAZY. You're the second one."
+      @error = "This trip is too short for us to calculate a transit route for. In other words, just walk."
     else
       @error = false
     end
