@@ -87,6 +87,8 @@ class TripPlanner
       @error = "Just take the fucking subway."
     elsif /[A-Z]/.match(@route_tag)
       @error = "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
+    elsif @short_trip
+      @error = "There's lazy, and then there's LAZY. You're the second one."
     else
       @error = false
     end
@@ -130,9 +132,13 @@ class TripPlanner
         else
           ttc_stop = instructions.split("Walk to ")[1]
         end
-        @route_tag = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
-        direction = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
-        @walk_to_stop_time = @transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+        if @transit_response["routes"][0]["legs"][0]["steps"].length > 1
+          @route_tag = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
+          direction = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
+          @walk_to_stop_time = @transit_response["routes"][0]["legs"][0]["steps"][0]["duration"]["value"]
+        else
+          @short_trip = true
+        end
         lat = @transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lat"].to_s
         lng = @transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lng"].to_s
         display_end = HTTParty.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + @key)["results"][0]["formatted_address"]
