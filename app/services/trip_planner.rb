@@ -29,7 +29,7 @@ class TripPlanner
     end
 
     arrivals.pop
-    
+
     arrival = nil
 
     arrivals.each do |t|
@@ -104,6 +104,7 @@ class TripPlanner
     @status = nil
     @route_tag = nil
     @error = nil
+    @short_trip = nil
 
     if !@error && !endpoints_error #Double checking the start and endpoints
       @api_url = api(@startpoint,@endpoint)

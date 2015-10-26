@@ -40294,3 +40294,78 @@ Processing by TripsPlannerController#create as HTML
   Parameters: {"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416", "trips_planner"=>{"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416"}}
 Can't verify CSRF token authenticity
 Completed 200 OK in 2302ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/?token=e4e15ea751977b2ca441e6fb8f1de9a6" for 10.0.2.2 at 2015-10-26 02:43:50 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Parameters: {"token"=>"e4e15ea751977b2ca441e6fb8f1de9a6"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "e4e15ea751977b2ca441e6fb8f1de9a6"]]
+Completed 200 OK in 144ms (Views: 0.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/trips/show?email=samkessaram@gmail.com" for 10.0.2.2 at 2015-10-26 02:43:52 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsController#show as HTML
+  Parameters: {"email"=>"samkessaram@gmail.com", "id"=>"show"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "samkessaram@gmail.com"]]
+  [1m[35mTrip Load (0.2ms)[0m  SELECT "trips".* FROM "trips" WHERE "trips"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 61ms (Views: 1.0ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:43:54 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416", "trips_planner"=>{"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 41210ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:44:48 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and symington", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and symington"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 3663ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:45:03 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 13812ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:45:43 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 35891ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:46:55 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 7986ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:47:35 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Toronto, Ontario, M6P, Canada", "endpoint"=>"bloor and dundas west"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 10937ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-26 02:47:55 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702", "trips_planner"=>{"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1659ms (Views: 0.5ms | ActiveRecord: 0.0ms)
