@@ -20,12 +20,16 @@ class TripPlanner
     walk_response = HTTParty.get(encoded)
   end
 
-  def self.get_arrival(path)
-    arrivals = path.xpath("//direction//prediction").to_s.split("</prediction>")
+  def self.get_arrival(arrivals_xml)
+    arrivals = arrivals_xml.split("</prediction>")
     arrivals.map! do |a|
-      a = a.split("seconds=")[1].split("minutes")[0].partition(/\d{3}/)[1].to_i
+      if a.include? ("seconds")
+        a = a.split("seconds=")[1].split("minutes")[0].partition(/\d{3,6}/)[1].to_i
+      end
     end
 
+    arrivals.pop
+    
     arrival = nil
 
     arrivals.each do |t|
@@ -179,17 +183,27 @@ class TripPlanner
       arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
       @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
 
-      nextbus_direction = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1].split(" - ")[0]
-
-      if ( nextbus_direction != direction ) && ( !@arrivals_doc.xpath("//predictions").to_s.split("stoptitle=\"")[1].split("\"")[0].include? ("Station") )
-          stop = targets[0]
-          stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
-          arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
-          @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
-          upcoming_arrivals = @arrivals_doc.xpath("//direction//prediction").to_s.split("</prediction>")
+      nextbus_routes = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")
+      
+      for i in 0..nextbus_routes.length
+        if i > 0 && i < nextbus_routes.length
+          if nextbus_routes[i].split(" - ")[0] == direction
+            arrivals = nextbus_routes[i]
+          end
+        end
       end
 
-      arrival = get_arrival(@arrivals_doc)
+      # if ( nextbus_direction != direction ) && ( !@arrivals_doc.xpath("//predictions").to_s.split("stoptitle=\"")[1].split("\"")[0].include? ("Station") )
+      #     if targets[0]
+      #       stop = targets[0]
+      #       stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
+      #       arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
+      #       @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
+      #       upcoming_arrivals = @arrivals_doc.xpath("//direction//prediction").to_s.split("</prediction>")
+      #     else
+      # end
+
+      arrival = get_arrival(arrivals)
 
       total_transit_time = transit_time.to_i + arrival
 
