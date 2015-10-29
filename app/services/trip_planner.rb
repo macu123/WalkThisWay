@@ -167,32 +167,52 @@ class TripPlanner
       stops = routes.xpath("//route//stop").to_s.split("</stop>")
       targets = []
       stop = nil
+      stop_list = []
+      stop_tag = nil
+
       stops.each do |s|
         if s.include? ttc_stop
           targets << s
         end
       end
 
-      if direction == "East" || direction == "South"
-          stop = targets.shift
-      elsif direction == "West" || direction == "North"
-          stop = targets.pop
+      routes.xpath("//direction").to_s.split("direction").each do |list|
+        if list.include? (direction)
+          stop_list << list
+        end
       end
 
-      stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
-
-      arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
-      @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
-
-      nextbus_routes = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")
-      
-      for i in 0..nextbus_routes.length
-        if i > 0 && i < nextbus_routes.length
-          if nextbus_routes[i].split(" - ")[0] == direction
-            arrivals = nextbus_routes[i]
+      targets.each do |t|
+        stop_list.each do |list|
+          if list.include?(t.split("<stop tag=\"")[1].split("\"")[0])
+            stop_tag = t.split("<stop tag=\"")[1].split("\"")[0]
           end
         end
       end
+
+      # if direction == "East" || direction == "South"
+      #     stop = targets.shift
+      # elsif direction == "West" || direction == "North"
+      #     stop = targets.pop
+      # end
+
+      # stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
+
+      # arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
+
+      arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&r=' + @route_tag + '&s=' + stop_tag
+
+      @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
+
+      arrivals = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1]
+      
+      # for i in 0..nextbus_routes.length
+      #   if i > 0 && i < nextbus_routes.length
+      #     if nextbus_routes[i].split(" - ")[0] == direction
+      #       arrivals = nextbus_routes[i]
+      #     end
+      #   end
+      # end
 
       # if ( nextbus_direction != direction ) && ( !@arrivals_doc.xpath("//predictions").to_s.split("stoptitle=\"")[1].split("\"")[0].include? ("Station") )
       #     if targets[0]
