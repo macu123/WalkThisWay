@@ -150,7 +150,11 @@ class TripPlanner
       elsif @transit_response["routes"][0]
         onboard = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
         if onboard.include? "Station"
-          ttc_stop = onboard.gsub!(" at "," At ")
+          if onboard.include? " at "
+            ttc_stop = onboard.gsub!(" at "," At ")
+          else
+            ttc_stop = onboard
+          end
         else
           ttc_stop = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
         end
