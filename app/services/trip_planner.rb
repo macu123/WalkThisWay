@@ -132,11 +132,7 @@ class TripPlanner
         
       if step_one == "WALKING"
         instructions = @transit_response["routes"][0]["legs"][0]["steps"][0]["html_instructions"]
-        if instructions.include? (" at ")
-          ttc_stop = instructions.split("Walk to ")[1].gsub!(" at "," At ")
-        else
-          ttc_stop = instructions.split("Walk to ")[1]
-        end
+        ttc_stop = instructions.split("Walk to ")[1]
         if @transit_response["routes"][0]["legs"][0]["steps"].length > 1
           @route_tag = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["line"]["short_name"]
           direction = @transit_response["routes"][0]["legs"][0]["steps"][1]["transit_details"]["headsign"].split(" - ")[0]
@@ -148,17 +144,7 @@ class TripPlanner
         lng = @transit_response["routes"][0]["legs"][0]["steps"][0]["end_location"]["lng"].to_s
         display_end = HTTParty.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + @key)["results"][0]["formatted_address"]
       elsif @transit_response["routes"][0]
-        onboard = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
-        if onboard.include? "Station"
-          if onboard.include? " at "
-            ttc_stop = onboard.gsub!(" at "," At ")
-          else
-            ttc_stop = onboard
-          end
-        else
-          ttc_stop = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
-        end
-
+        ttc_stop = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
         @route_tag = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
         direction = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
         @walk_to_stop_time = 0
@@ -175,12 +161,8 @@ class TripPlanner
       stop_list = []
       stop_tag = nil
 
-      if ttc_stop.include? "Queen's Park"
-        ttc_stop.gsub!("Queen's","Queen'S")
-      end
-
       stops.each do |s|
-        if s.include? ttc_stop
+        if s.upcase.include? ttc_stop.upcase
           targets << s
         end
       end

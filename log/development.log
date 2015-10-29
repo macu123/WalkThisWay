@@ -41517,3 +41517,111 @@ Processing by TripsPlannerController#create as HTML
   Parameters: {"startpoint"=>"college and university", "endpoint"=>"main station", "trips_planner"=>{"startpoint"=>"college and university", "endpoint"=>"main station"}}
 Can't verify CSRF token authenticity
 Completed 200 OK in 1367ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:41:11 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"college and university", "endpoint"=>"main station", "trips_planner"=>{"startpoint"=>"college and university", "endpoint"=>"main station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 95457ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:42:55 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"college and university", "endpoint"=>"main station", "trips_planner"=>{"startpoint"=>"college and university", "endpoint"=>"main station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1158ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:46:31 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702", "trips_planner"=>{"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 59ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/vagrant/WalkThisWay/app/services/trip_planner.rb:281: syntax error, unexpected keyword_end, expecting end-of-input):
+  app/services/trip_planner.rb:281: syntax error, unexpected keyword_end, expecting end-of-input
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (62.3ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:47:48 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (/vagrant/WalkThisWay/app/services/trip_planner.rb:281: syntax error, unexpected keyword_end, expecting end-of-input):
+  app/services/trip_planner.rb:281: syntax error, unexpected keyword_end, expecting end-of-input
+  app/controllers/trips_planner_controller.rb:2:in `require_relative'
+  app/controllers/trips_planner_controller.rb:2:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (51.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (52.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (144.9ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:48:30 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"college and university", "endpoint"=>"main station", "trips_planner"=>{"startpoint"=>"college and university", "endpoint"=>"main station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1322ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:48:37 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702", "trips_planner"=>{"startpoint"=>"43.647297,-79.403495", "endpoint"=>"43.648616,-79.396702"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1345ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:48:41 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416", "trips_planner"=>{"startpoint"=>"43.657113,-79.448538", "endpoint"=>"43.656891,-79.453416"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1275ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:48:45 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"43.646483,-79.395539", "endpoint"=>"43.64734,-79.40369", "trips_planner"=>{"startpoint"=>"43.646483,-79.395539", "endpoint"=>"43.64734,-79.40369"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1214ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:48:56 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"spadina station", "endpoint"=>"spadina and dupont", "trips_planner"=>{"startpoint"=>"spadina station", "endpoint"=>"spadina and dupont"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1089ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:49:05 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"spadina station", "endpoint"=>"spadina and harbord", "trips_planner"=>{"startpoint"=>"spadina station", "endpoint"=>"spadina and harbord"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1146ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2015-10-29 06:49:14 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"union station", "endpoint"=>"spadina and harbord", "trips_planner"=>{"startpoint"=>"union station", "endpoint"=>"spadina and harbord"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1239ms (Views: 0.6ms | ActiveRecord: 0.0ms)
