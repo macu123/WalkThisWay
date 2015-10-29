@@ -87,7 +87,7 @@ class TripPlanner
   end
 
   def self.route_tag_error
-    if @route_tag == "1" || @route_tag == "2" || @route_tag == "3"
+    if @route_tag == "1" || @route_tag == "2" || @route_tag == "3" || @route_tag == "4"
       @error = "Just take the fucking subway."
     elsif /[A-Z]/.match(@route_tag)
       @error = "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
@@ -150,7 +150,7 @@ class TripPlanner
       elsif @transit_response["routes"][0]
         onboard = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"]
         if onboard.include? "Station"
-          ttc_stop = onboard
+          ttc_stop = onboard.gsub!(" at "," At ")
         else
           ttc_stop = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
         end
