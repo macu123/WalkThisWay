@@ -158,6 +158,7 @@ class TripPlanner
         else
           ttc_stop = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["departure_stop"]["name"].gsub!(" at "," At ")
         end
+
         @route_tag = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["line"]["short_name"]
         direction = @transit_response["routes"][0]["legs"][0]["steps"][0]["transit_details"]["headsign"].split(" - ")[0]
         @walk_to_stop_time = 0
@@ -173,6 +174,10 @@ class TripPlanner
       stop = nil
       stop_list = []
       stop_tag = nil
+
+      if ttc_stop.include? "Queen's Park"
+        ttc_stop.gsub!("Queen's","Queen'S")
+      end
 
       stops.each do |s|
         if s.include? ttc_stop
