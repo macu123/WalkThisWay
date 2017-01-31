@@ -88,7 +88,7 @@ class TripPlanner
 
   def self.route_tag_error
     if @route_tag == "1" || @route_tag == "2" || @route_tag == "3" || @route_tag == "4"
-      @error = "Just take the fucking subway."
+      @error = "Don't be silly. You should take the subway."
     elsif /[A-Z]/.match(@route_tag)
       @error = "Your trip is beyond the realm of the TTC (or this app...). Godspeed."
     elsif @short_trip
