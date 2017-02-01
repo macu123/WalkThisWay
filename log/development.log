@@ -41642,3 +41642,238 @@ Processing by TripsPlannerController#create as HTML
   Parameters: {"startpoint"=>"spadina station", "endpoint"=>"dupont station", "trips_planner"=>{"startpoint"=>"spadina station", "endpoint"=>"dupont station"}}
 Can't verify CSRF token authenticity
 Completed 200 OK in 220794ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2017-02-01 20:07:38 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (8.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/railties-4.2.4/lib/rails/templates/rails/welcome/index.html.erb (10.5ms)
+Completed 200 OK in 100ms (Views: 56.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "//users/" for 10.0.2.2 at 2017-02-01 20:24:23 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 1495ms (Views: 1458.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:24:34 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 25029ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:194:in `+'
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.1ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:26:27 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed   in 53099ms (ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:28:01 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 61534ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:194:in `+'
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.2ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:29:10 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 64119ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:195:in `+'
+  app/services/trip_planner.rb:195:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:30:18 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed   in 33942ms (ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:31:01 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 124357ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:194:in `+'
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.6ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:33:30 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 481969ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:194:in `+'
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (40.4ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:41:55 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed   in 23810ms (ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:42:26 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed   in 44190ms (ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:43:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 891502ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:194:in `+'
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (18.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.2ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 20:58:33 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 39371ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:171:in `include?'
+  app/services/trip_planner.rb:171:in `block in plan_trip'
+  app/services/trip_planner.rb:170:in `each'
+  app/services/trip_planner.rb:170:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.2ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 21:00:14 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 69915ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:171:in `include?'
+  app/services/trip_planner.rb:171:in `block in plan_trip'
+  app/services/trip_planner.rb:170:in `each'
+  app/services/trip_planner.rb:170:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (37.7ms)
+
+
+Started GET "//users/" for 10.0.2.2 at 2017-02-01 21:01:56 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 1454ms (Views: 1408.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 21:02:02 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed   in 591282ms (ActiveRecord: 0.0ms)
+
+
+Started POST "//trips_planner/" for 10.0.2.2 at 2017-02-01 21:12:06 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 4321ms (Views: 0.5ms | ActiveRecord: 0.0ms)

@@ -177,6 +177,8 @@ class TripPlanner
         stop_list.each do |list|
           if list.include?(t.split("<stop tag=\"")[1].split("\"")[0])
             stop_tag = t.split("<stop tag=\"")[1].split("\"")[0]
+          else
+            @error = "Sorry, there's insufficient NextBus data for this route!"
           end
         end
       end
@@ -190,12 +192,25 @@ class TripPlanner
       # stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
 
       # arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
+      if !!stop_tag
+        arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&r=' + @route_tag + '&s=' + stop_tag
 
-      arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&r=' + @route_tag + '&s=' + stop_tag
+        @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
 
-      @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
+        arrivals = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1]
 
-      arrivals = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1]
+        arrival = get_arrival(arrivals)
+
+        total_transit_time = transit_time.to_i + arrival
+
+        if ( walk_time > total_transit_time )
+          take_transit = true
+        else
+          take_transit = false
+          display_end = @destination
+        end
+      end
+    end
       
       # for i in 0..nextbus_routes.length
       #   if i > 0 && i < nextbus_routes.length
@@ -215,17 +230,7 @@ class TripPlanner
       #     else
       # end
 
-      arrival = get_arrival(arrivals)
-
-      total_transit_time = transit_time.to_i + arrival
-
-      if ( walk_time > total_transit_time )
-        take_transit = true
-      else
-        take_transit = false
-        display_end = @destination
-      end
-    end
+      
 
     if @error
       response = {
