@@ -178,10 +178,11 @@ class TripPlanner
           if list.include?(t.split("<stop tag=\"")[1].split("\"")[0])
             stop_tag = t.split("<stop tag=\"")[1].split("\"")[0]
           else
-            @error = "Sorry, there's insufficient NextBus data for this route!"
+            stop_tag = t.split("<stop tag=\"")[1].split("\"")[0]
           end
         end
       end
+    end
 
       # if direction == "East" || direction == "South"
       #     stop = targets.shift
@@ -192,26 +193,27 @@ class TripPlanner
       # stop_id = stop.split('stopid')[1].partition(/\d{4,5}/)[1]
 
       # arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=' + stop_id
-      if !!stop_tag
-        arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&r=' + @route_tag + '&s=' + stop_tag
 
-        @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
 
-        arrivals = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1]
 
-        arrival = get_arrival(arrivals)
+    if !@error
+      arrivals_url = 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=ttc&r=' + @route_tag + '&s=' + stop_tag
 
-        total_transit_time = transit_time.to_i + arrival
+      @arrivals_doc = Nokogiri::HTML(open(arrivals_url))
 
-        if ( walk_time > total_transit_time )
-          take_transit = true
-        else
-          take_transit = false
-          display_end = @destination
-        end
+      arrivals = @arrivals_doc.xpath("//direction").to_s.split("<direction title=\"")[1]
+
+      arrival = get_arrival(arrivals)
+
+      total_transit_time = transit_time.to_i + arrival
+
+      if ( walk_time > total_transit_time )
+        take_transit = true
+      else
+        take_transit = false
+        display_end = @destination
       end
     end
-      
       # for i in 0..nextbus_routes.length
       #   if i > 0 && i < nextbus_routes.length
       #     if nextbus_routes[i].split(" - ")[0] == direction

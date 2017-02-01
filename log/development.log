@@ -41877,3 +41877,465 @@ Processing by TripsPlannerController#create as HTML
   Parameters: {"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library, 789, Yonge Street, Yorkville, Old Toronto, Toronto, Ontario, M4W 2G4, Canada", "endpoint"=>"bay and charles"}}
 Can't verify CSRF token authenticity
 Completed 200 OK in 4321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2017-02-01 22:19:53 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/railties-4.2.4/lib/rails/templates/rails/welcome/index.html.erb (9.8ms)
+Completed 200 OK in 94ms (Views: 55.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/" for 10.0.2.2 at 2017-02-01 22:27:03 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 1477ms (Views: 1433.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/" for 10.0.2.2 at 2017-02-01 22:27:50 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 930ms (Views: 928.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:27:56 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 2206ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:32:30 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/vagrant/learn/lighthouse/walkthisway_files/WalkThisWay/app/services/trip_planner.rb:276: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/services/trip_planner.rb:276: syntax error, unexpected end-of-input, expecting keyword_end
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.5ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:33:13 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1444, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/vagrant/learn/lighthouse/walkthisway_files/WalkThisWay/app/services/trip_planner.rb:275: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/services/trip_planner.rb:275: syntax error, unexpected end-of-input, expecting keyword_end
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.9ms)
+
+
+Started GET "/users/" for 10.0.2.2 at 2017-02-01 22:34:02 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 845ms (Views: 843.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:34:08 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2250ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `arrival' for TripPlanner:Class):
+  app/services/trip_planner.rb:257:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.4ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:36:13 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1319ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `arrival' for TripPlanner:Class):
+  app/services/trip_planner.rb:259:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.3ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:37:00 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1386ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `arrival' for TripPlanner:Class):
+  app/services/trip_planner.rb:200:in `block in plan_trip'
+  app/services/trip_planner.rb:176:in `each'
+  app/services/trip_planner.rb:176:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.4ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:37:23 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1299ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `take_transit' for TripPlanner:Class):
+  app/services/trip_planner.rb:262:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.9ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:38:09 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1446, Bloor Street West, Wallace Emerson, Old Toronto, Toronto, Ontario, M6P, Canada", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1266ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:38:21 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1713ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:195:in `+'
+  app/services/trip_planner.rb:195:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (29.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:38:40 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1759ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:195:in `+'
+  app/services/trip_planner.rb:195:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:39:07 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1208ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `route_tag' for TripPlanner:Class):
+  app/services/trip_planner.rb:194:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (29.2ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:39:39 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1264ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:196:in `+'
+  app/services/trip_planner.rb:196:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.1ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:41:10 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 843ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:199:in `+'
+  app/services/trip_planner.rb:199:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (18.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.5ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:42:07 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 920ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:197:in `+'
+  app/services/trip_planner.rb:197:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.8ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:42:43 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1215ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:198:in `+'
+  app/services/trip_planner.rb:198:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.4ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:43:00 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 860ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:198:in `+'
+  app/services/trip_planner.rb:198:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.2ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:43:26 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1613ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:198:in `+'
+  app/services/trip_planner.rb:198:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.4ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:44:20 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2758ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:199:in `+'
+  app/services/trip_planner.rb:199:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.2ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:45:27 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 863ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:45:36 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1818ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:198:in `+'
+  app/services/trip_planner.rb:198:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.3ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:46:17 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1012ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:198:in `+'
+  app/services/trip_planner.rb:198:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.3ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:46:53 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 988ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:199:in `+'
+  app/services/trip_planner.rb:199:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:48:21 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1123ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/services/trip_planner.rb:200:in `+'
+  app/services/trip_planner.rb:200:in `plan_trip'
+  app/controllers/trips_planner_controller.rb:11:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.3/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.2ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:51:29 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles", "trips_planner"=>{"startpoint"=>"Toronto Reference Library", "endpoint"=>"bay and charles"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1225ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:52:15 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444 Bloor St W", "endpoint"=>"dundas west station", "trips_planner"=>{"startpoint"=>"1444 Bloor St W", "endpoint"=>"dundas west station"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1810ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:52:25 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"1444 Bloor St W", "endpoint"=>"lula lounge", "trips_planner"=>{"startpoint"=>"1444 Bloor St W", "endpoint"=>"lula lounge"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1679ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/trips_planner/" for 10.0.2.2 at 2017-02-01 22:52:47 +0000
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by TripsPlannerController#create as HTML
+  Parameters: {"startpoint"=>"dundas west station", "endpoint"=>"lula lounge", "trips_planner"=>{"startpoint"=>"dundas west station", "endpoint"=>"lula lounge"}}
+Can't verify CSRF token authenticity
+Completed 200 OK in 1672ms (Views: 0.6ms | ActiveRecord: 0.0ms)
