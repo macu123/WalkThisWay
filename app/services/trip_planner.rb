@@ -75,9 +75,9 @@ class TripPlanner
   end
 
   def self.waypoints_error
-    start_waypoint = @transit_response["geocoded_waypoints"][0]["types"][0]
+    start_waypoint = @transit_response["geocoded_waypoints"][0]["types"]
     end_waypoint = @transit_response["geocoded_waypoints"][1]["types"][0]
-    if start_waypoint == "locality"
+    if start_waypoint && (start_waypoint[0] == "locality")
       @error = "Please enter a more specific startpoint."
     elsif end_waypoint == "locality"
       @error = "Please enter a more specific endpoint."
@@ -277,5 +277,6 @@ class TripPlanner
         errors: @error
       }
     end
+    p response
   end
 end
